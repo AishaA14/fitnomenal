@@ -1,4 +1,4 @@
-import Logout from "@/components/logout/logout"
+import Logout from "../logout/Logout"
 import Link from "next/link"
 import { useState } from 'react'
 

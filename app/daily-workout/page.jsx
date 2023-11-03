@@ -38,33 +38,33 @@ export default function DailyWorkoutsPage() {
     router.push("daily-workout/workout-details")
   }
 
-  const Workouts = finalWorkout.map((workout, index) => (
+  const Workouts = finalWorkout ? (finalWorkout.map((workout, index) => (
     <div key={workout._id} className="bg-pink-100 rounded-lg shadow-lg p-4 m-4">
       <GiMuscleUp size={20} color="purple" />
       <h2 className="text-xl font-semibold mb-2">{index + 1}. {workout.name}</h2>
       <h2 className="text-base text-gray-600">Target Muscle: {workout.target}</h2>
     </div>
-  ));
-  
+  )))  : null
+
   return (
-      <div className=''>
+    <div className=''>
       <NavBar />
       <h1 className="text-2xl font-semibold mb-4">How about these workouts?</h1>
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {Workouts}
       </ul>
       <div className='flex flex-col sm:flex-row justify-between items-center'>
-      <h3 className="text-xl font-semibold my-4 ">Happy with this workout?</h3>
-      <button
-        className="btn btn-purple px-4 py-2 rounded-md sm:my-0 my-4"
-        onClick={handleSave}
-      >
-        Begin
-      </button>
-      <h3 className="text-xl font-semibold my-4">Or</h3>
-      <NewWorkoutModal choice={choice} setChoice={setChoice} />
+        <h3 className="text-xl font-semibold my-4 ">Happy with this workout?</h3>
+        <button
+          className="btn btn-purple px-4 py-2 rounded-md sm:my-0 my-4"
+          onClick={handleSave}
+        >
+          Begin
+        </button>
+        <h3 className="text-xl font-semibold my-4">Or</h3>
+        <NewWorkoutModal choice={choice} setChoice={setChoice} />
+      </div>
     </div>
-    </div>   
+
   )
 }
-                      
