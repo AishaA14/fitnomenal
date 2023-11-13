@@ -47,82 +47,122 @@ During the planning stage, I took the following steps:
 
 ## Build/Code Process
 
-### Code Snippet 1: User Authentication
+### Code Snippet 1: Fetching workout details
 
-```javascript
-// Server-side code for user authentication using Passport.js
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+```jsx
+const getDailyWorkout = async () => {
+    //fetch workout details
+    if (status === "authenticated") {
+      try {
+        const response = await fetch(`${DATABASE_CONNECTION}/daily-workout/get?userEmail=${userEmail}`)
+        const result = await response.json()
 
-passport.use(new LocalStrategy(
-  async function(username, password, done) {
-    const user = await User.findOne({ username });
-
-    if (!user) {
-      return done(null, false, { message: 'Incorrect username.' });
+        setDailyWorkout(result.exercises)
+        
+      } catch (error) {
+        console.log('trouble fetching the daily workout', error)
+        setDailyWorkout('no workout')
+      }
     }
-
-    if (!user.validPassword(password)) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-
-    return done(null, user);
   }
-));
+
 ```
 
 *This code snippet demonstrates the use of Passport.js for local authentication.*
 
-### Code Snippet 2: React Component for Workout Form
+### Code Snippet 2: Rendering the workout goals page
 
 ```jsx
-// React component for adding a new workout
-import React, { useState } from 'react';
+// Define states
+  const [userWorkoutGoal, setUserWorkoutGoal] = useState(0); // Workout goal from the database
+  const [completedWorkouts, setCompletedWorkouts] = useState([]); // Array to store completed workouts
+  const [currentWeight, setCurrentWeight] = useState(null); // Current weight in kg
+  const [goalWeight, setGoalWeight] = useState(null); // Goal weight in kg
 
-const AddWorkoutForm = () => {
-  const [exercise, setExercise] = useState('');
-  const [sets, setSets] = useState(0);
-  const [reps, setReps] = useState(0);
+  const workoutsPercentage = (completedWorkouts.length/ userWorkoutGoal) * 100;
+  const weightDifference = Math.abs(goalWeight - currentWeight);
+  const weightChangeDirection = goalWeight > currentWeight ? "gain" : "lose";
+  let weightProgress = 0;
+  
+  if (weightChangeDirection === "gain") {
+    weightProgress = (weightDifference / Math.abs(goalWeight)) * 100;
+  } else {
+    weightProgress = ((Math.abs(goalWeight) - weightDifference) / Math.abs(goalWeight)) * 100;
+  }
+  
 
-  const handleAddExercise = () => {
-    // Logic to add exercise to the workout
-  };
-
-  return (
-    <div>
-      <input type="text" placeholder="Exercise" onChange={(e) => setExercise(e.target.value)} />
-      <input type="number" placeholder="Sets" onChange={(e) => setSets(e.target.value)} />
-      <input type="number" placeholder="Reps" onChange={(e) => setReps(e.target.value)} />
-      <button onClick={handleAddExercise}>Add Exercise</button>
-    </div>
-  );
-};
-
-export default AddWorkoutForm;
+    let progressMessage = "Keep pushing, you can do it!";
+    if (completedWorkouts.length >= userWorkoutGoal) {
+      progressMessage = "Well done! You've reached your weekly workout goal!";
+    } else if (workoutsPercentage >= 50) {
+      progressMessage = "You're making good progress. Keep it up!";
+    } else if (completedWorkouts.length > 0) {
+      progressMessage = "You're on your way. Keep going!";
+    } else {
+      progressMessage = "Get started on your workouts!";
+    }
 ```
 
 *This code snippet showcases a React component for adding a new workout to the user's plan.*
 
-### Code Snippet 3: Express Route for Workout History
+### Code Snippet 3: Saving completed workouts to the workout history database
 
 ```javascript
-// Express route for retrieving workout history
-router.get('/workout-history', async (req, res) => {
+//* SAVE THE WORKOUT TO THE WORKOUT HISTORY DB
+const markWorkoutAsCompleted = async (req, res) => {
+  const { userId } = req.body
+
   try {
-    const history = await WorkoutHistory.find({ userId: req.user._id });
-    res.json(history);
+    // Find the daily workout by ID
+    const dailyWorkout = await DailyWorkout.findOne({
+      userId: userId
+    });
+
+    if (!dailyWorkout) {
+      return res.status(404).json({ message: "Workout not found" });
+    }
+
+    // Mark the workout as completed
+    dailyWorkout.status = "completed";
+
+    // Save the updated "in progress" workout
+    await dailyWorkout.save();
+
+    const now = new Date()
+    const flattenedDW = dailyWorkout.exercises.flat()
+    // Create a new workoutHistory document for the completed workout
+    const workoutHistory = new WorkoutHistory({
+      userId: dailyWorkout.userId,
+      date: now,
+      exercises: flattenedDW,
+      status: "completed",
+    });
+
+    // Save the completed workout in the "WorkoutHistory" collection
+    await workoutHistory.save();
+    console.log('moved to workout history', workoutHistory)
+
+    //delete the original dailyworkout
+    await DailyWorkout.deleteOne({ "userId": dailyWorkout.userId })
+    console.log('delete workout we dont want')
+
+    res.sendStatus(200);
+    
   } catch (error) {
-    res.status(500).json({ error: 'Error retrieving workout history' });
+    console.log('an error occurred', error)
+    return res.status(500).json({ message: "An error occurred" });
   }
-});
+};
+
+export { markWorkoutAsCompleted };
 ```
 
-*This code snippet demonstrates an Express route for retrieving workout history based on the user's ID.*
+*This code snippet demonstrates the logic behind saving completed workouts to the histroy database*
 
 ## Challenges
 
-- **Technical Challenges**: Implementing user authentication and securing routes posed challenges due to the complexity of Passport.js.
-- **Team Dynamics/Project Management**: As it was a solo project, managing time effectively and prioritizing tasks was crucial.
+- **Technical Challenges**: Implementing user authentication and securing routes posed challenges.
+- **Team Dynamics/Project Management**: As it was a group project, managing time effectively and prioritizing and allocating tasks was crucial.
 
 ## Wins
 
