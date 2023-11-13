@@ -1,5 +1,29 @@
 # Fitness Project
 
+## Table of Contents
+
+1. [Description](#description)
+2. [Deployment Link](#deployment-link)
+3. [Getting Started/Code Installation](#getting-startedcode-installation)
+4. [Timeframe & Working Team](#timeframe--working-team)
+5. [Technologies Used](#technologies-used)
+6. [Brief](#brief)
+7. [Planning](#planning)
+   - 7.1 [Sketches](#sketches)
+   - 7.2 [Wireframes](#wireframes)
+   - 7.3 [ERDs](#erds)
+   - 7.4 [Project Management](#project-management)
+   - 7.5 [Pseudocode](#pseudocode)
+8. [Build/Code Process](#buildcode-process)
+   - 8.1 [Code Snippet 1: Fetching workout details](#code-snippet-1-fetching-workout-details)
+   - 8.2 [Code Snippet 2: Rendering the workout goals page](#code-snippet-2-rendering-the-workout-goals-page)
+   - 8.3 [Code Snippet 3: Saving completed workouts to the workout history database](#code-snippet-3-saving-completed-workouts-to-the-workout-history-database)
+9. [Challenges](#challenges)
+10. [Wins](#wins)
+11. [Key Learnings/Takeaways](#key-learningstakeaways)
+12. [Bugs](#bugs)
+13. [Future Improvements](#future-improvements)
+
 ## Description
 
 This fitness project is a web application designed to help users plan and track their daily workouts. It was completed during a one-week sprint as part of the coding bootcamp. The project focuses on providing users with a seamless experience for creating, managing, and completing their daily workout routines. The tech stack includes React for the front end, Node.js and Express for the back end, and MongoDB for the database.
