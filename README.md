@@ -67,7 +67,7 @@ During the planning stage, I took the following steps:
 
 ![Excalidraw Image](excalidraw.png)
    
-2. **ERDs**: Using Lusic Chart, we developed Entity Relationship Diagrams to define the relationships between different entities.
+2. **ERDs**: Using Lucid Chart, we developed Entity Relationship Diagrams to define the relationships between different entities.
 
 ![ERD Image](erd.png)
 
@@ -220,4 +220,5 @@ No known bugs.
 ## Future Improvements
 
 - Implement a feature to track user progress over time.
+- Implement calorie tracker.
 - Enhance the visual design for a more engaging user experience.
