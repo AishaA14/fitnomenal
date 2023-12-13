@@ -1,6 +1,7 @@
 # Fitness Project
 
-![Fitnomenal](main.png) ![Fitnomenal](main2.png) 
+![Fitnomenal](main.png)
+![Fitnomenal](main2.png) 
 
 
 ## Table of Contents
