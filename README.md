@@ -36,7 +36,7 @@ This fitness project is a web application designed to help users plan and track 
 
 ## Deployment Link
 
-The project is deployed and can be accessed at [Fitness App](https://fitnomenal-workouts.vercel/). 
+The project is deployed and can be accessed at [Fitness App](https://fitnomenal-workouts.vercel.app). 
 
 ## Getting Started/Code Installation
 
