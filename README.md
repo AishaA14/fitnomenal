@@ -9,11 +9,9 @@
 5. [Technologies Used](#technologies-used)
 6. [Brief](#brief)
 7. [Planning](#planning)
-   - 7.1 [Sketches](#sketches)
-   - 7.2 [Wireframes](#wireframes)
-   - 7.3 [ERDs](#erds)
-   - 7.4 [Project Management](#project-management)
-   - 7.5 [Pseudocode](#pseudocode)
+   - 7.1 [Wireframes](#wireframes)
+   - 7.2 [ERDs](#erds)
+   - 7.3 [Project Management](#project-management)
 8. [Build/Code Process](#buildcode-process)
    - 8.1 [Code Snippet 1: Fetching workout details](#code-snippet-1-fetching-workout-details)
    - 8.2 [Code Snippet 2: Rendering the workout goals page](#code-snippet-2-rendering-the-workout-goals-page)
@@ -61,15 +59,26 @@ Create a fitness application that allows users to plan and track their daily wor
 
 During the planning stage, I took the following steps:
 
-1. **Sketches**: We created rough sketches of the app's layout to visualize the user interface.
-2. **Wireframes**: Designed wireframes for the front end and UI to plan the app's structure.
-3. **ERDs**: Developed Entity Relationship Diagrams to define the relationships between different entities.
-4. **Project Management**: Used Trello for project management, creating tickets, and allocating responsibilities in a sprint timeline.
-5. **Pseudocode**: Outlined pseudocode to plan the logic and flow of the application.
+1. **Wireframes**: Designed wireframes for the front end and UI to plan the app's structure, using excalidraw.
+
+![Excalidraw Image](excalidraw.png)
+   
+2. **ERDs**: Using Lusic Chart, we developed Entity Relationship Diagrams to define the relationships between different entities.
+
+![ERD Image](erd.png)
+
+3. **Project Management**: Used Trello for project management, creating tickets, and allocating responsibilities in a sprint timeline.
+   
+My primary responsibility on the backend involved defining models for daily workouts and workout history. I established API endpoints to seamlessly connect the frontend with the backend, implementing functions for storing, retrieving, and deleting data from the database. Meanwhile, on the frontend, I curated a vibrant colour scheme and leveraged tools like Tailwind and Flowbite to style the web pages.
+
+
+![Trello Image](trello.png)
 
 *Images of sketches, wireframes, and Trello board can be found in the [Planning](#planning) section below.*
 
 ## Build/Code Process
+
+
 
 ### Code Snippet 1: Fetching workout details
 
@@ -92,7 +101,6 @@ const getDailyWorkout = async () => {
 
 ```
 
-*This code snippet demonstrates the use of Passport.js for local authentication.*
 
 ### Code Snippet 2: Rendering the workout goals page
 
@@ -197,14 +205,13 @@ export { markWorkoutAsCompleted };
 ## Key Learnings/Takeaways
 
 - Gained proficiency in using React for front-end development.
-- Improved project management skills through effective use of Trello.
+- Improved project management and communication skills through effective use of Trello.
 - Enhanced understanding of user authentication and authorization.
 
 ## Bugs
 
-No known bugs at the time of
+No known bugs.
 
- deployment.
 
 ## Future Improvements
 
