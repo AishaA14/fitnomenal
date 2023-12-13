@@ -1,5 +1,13 @@
 # Fitness Project
 
+![Fitnomenal](main.png)
+
+![screenshot of app](screenshot1.png)
+![screenshot of app](screenshot2.png)
+![screenshot of app](screenshot3.png)
+![screenshot of app](screenshot4.png)
+
+
 ## Table of Contents
 
 1. [Description](#description)
