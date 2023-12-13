@@ -65,18 +65,18 @@ During the planning stage, I took the following steps:
 
 1. **Wireframes**: Designed wireframes for the front end and UI to plan the app's structure, using excalidraw.
 
-![Excalidraw Image](excalidraw.png)
+![Excalidraw Image](excalidrawF.png)
    
 2. **ERDs**: Using Lucid Chart, we developed Entity Relationship Diagrams to define the relationships between different entities.
 
-![ERD Image](erd.png)
+![ERD Image](erdf.png)
 
 3. **Project Management**: Used Trello for project management, creating tickets, and allocating responsibilities in a sprint timeline.
    
 My primary responsibility on the backend involved defining models for daily workouts and workout history. I established API endpoints to seamlessly connect the frontend with the backend, implementing functions for storing, retrieving, and deleting data from the database. Meanwhile, on the frontend, I curated a vibrant colour scheme and leveraged tools like Tailwind and Flowbite to style the web pages.
 
 
-![Trello Image](trello.png)
+![Trello Image](trellof.png)
 
 *Images of sketches, wireframes, and Trello board can be found in the [Planning](#planning) section below.*
 
